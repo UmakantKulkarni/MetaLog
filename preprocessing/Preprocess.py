@@ -3,6 +3,7 @@ from entities.instances import Instance
 from preprocessing.dataloader.BGLLoader import BGLLoader
 from preprocessing.dataloader.HDFSLoader import HDFSLoader
 from preprocessing.dataloader.OSLoader import OSLoader
+from preprocessing.dataloader.Open5GSLoader import Open5GSLoader
 
 
 class Preprocessor:
@@ -76,6 +77,11 @@ class Preprocessor:
                                     ab_in_file=os.path.join(PROJECT_ROOT, 'datasets/OpenStack/openstack_abnormal.log'),
                                     semantic_repr_func=template_encoding)
             parser_config = os.path.join(PROJECT_ROOT, 'conf/OpenStack.ini')
+        elif dataset.lower() == 'open5gs':
+            dataloader = Open5GSLoader(
+                in_file=os.path.join(PROJECT_ROOT, 'datasets/open5gs/open5gs.log'),
+                semantic_repr_func=template_encoding)
+            parser_config = os.path.join(PROJECT_ROOT, 'conf/Open5GS.ini')
 
         self.dataloader = dataloader
 
